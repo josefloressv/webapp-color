@@ -1,4 +1,4 @@
-# This workflow is used for deploying the application to different environments using AWS ECS.
+# This workflow is used for building and pushing the Docker image to Docker Hub.
 
 name: Deployment Workflow template
 
@@ -45,8 +45,10 @@ jobs:
             else
               echo "image_tag=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
             fi
-    
+
+        # Push only on the main branch.
         - name: Build and push
+          id: build
           # if: github.ref == 'refs/heads/main'
           uses: docker/build-push-action@v6 # https://github.com/docker/build-push-action
           with:
@@ -57,4 +59,12 @@ jobs:
             attests: type=sbom
             platforms: linux/amd64,linux/arm64
             tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:${{ steps.tag.outputs.image_tag }}
-  
+
+        - name: Display build summary
+          run: |
+            echo "Docker Build Summary:"
+            echo "${{ steps.build.outputs.metadata }}"
+
+        - name: Add image tag to summary
+          run: |
+            echo "New Docker image tag: ${{ steps.tag.outputs.image_tag }}" >> $GITHUB_STEP_SUMMARY  
