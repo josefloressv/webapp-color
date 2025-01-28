@@ -59,12 +59,3 @@ jobs:
             attests: type=sbom
             platforms: linux/amd64,linux/arm64
             tags: ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:${{ steps.tag.outputs.image_tag }}
-
-        - name: Display build summary
-          run: |
-            echo "Docker Build Summary:"
-            echo "${{ steps.build.outputs.metadata }}"
-
-        - name: Add image tag to summary
-          run: |
-            echo "New Docker image tag: ${{ steps.tag.outputs.image_tag }}" >> $GITHUB_STEP_SUMMARY  
