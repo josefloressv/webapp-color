@@ -7,6 +7,10 @@ on:
     secrets:
       DOCKERHUB_TOKEN:
         required: true
+    outputs:
+      image_tag:
+        description: "The new docker image tag"
+        value: ${{ jobs.build_and_push.outputs.image_tag }}
 
 # Define environment variables used in the workflow.
 env:
@@ -46,7 +50,7 @@ jobs:
         # Push only on the main branch.
         - name: Build and push
           id: build
-          # if: github.ref == 'refs/heads/main'
+          if: github.ref == 'refs/heads/main'
           uses: docker/build-push-action@v6 # https://github.com/docker/build-push-action
           with:
             context: .
