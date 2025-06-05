@@ -9,6 +9,7 @@
             background-color: {{ bg_color }};
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: {{ font_color }};
@@ -22,7 +23,7 @@
 <body>
     <h1>{{ message }}</h1>
     <div>
-        Background color is set to: {{ bg_color }} and font color is set to: {{ font_color }}
+        Background color is set to: <strong>{{ bg_color }}</strong> and font color is set to: <strong>{{ font_color }}</strong>
     </div>
 </body>
 </html>
