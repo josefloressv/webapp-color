@@ -32,7 +32,7 @@ my-python-web-app
 
 3. **Install dependencies**:
    ```
-   pip install -r requirements.txt
+   pip install -r app/requirements.txt
    ```
 
 4. **Set the environment variable**:
@@ -45,7 +45,7 @@ my-python-web-app
 
 5. **Run the application**:
    ```bash
-   python main.py
+   python app/main.py
    ```
 
 6. **Access the application**:
