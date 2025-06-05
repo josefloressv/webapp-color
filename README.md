@@ -62,12 +62,15 @@ Docker Buildx is a CLI plugin that extends the Docker command with the full supp
 # Enable Docker Buildx:
 docker buildx create --use
 
-# Build the Docker image using Buildx:
-docker buildx build --platform linux/amd64,linux/arm64 -t josefloressv/webapp-color --push .
+# Build the Docker image using Buildx: Note
+docker buildx build --platform linux/amd64,linux/arm64 -t josefloressv/webapp-color .
 
 # Run the Docker container:
 docker run -d -p 8080:8080 --name webapp-color josefloressv/webapp-color
 
 # Run with variables
 docker run -e BG_COLOR=black -e FONT_COLOR=yellow -d -p 8080:8080 --name webapp-color josefloressv/webapp-color
+
+# Push the new version
+docker push josefloressv/webapp-color
 ```
