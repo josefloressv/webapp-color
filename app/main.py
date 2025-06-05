@@ -9,7 +9,7 @@ def create_app():
     def home():
         bg_color = os.getenv('BG_COLOR', 'white')  # Default to white if not set
         font_color = os.getenv('FONT_COLOR', 'black')  # Default to black if not set
-        message = os.getenv('MESSAGE', 'Hola KCD Costa Rica 2025')  # Default to black if not set
+        message = os.getenv('MESSAGE', 'Hola Mundo Python')  # Default to black if not set
         return render_template('index.html', bg_color=bg_color, font_color=font_color, message=message)
 
     return app
